@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #error,#pass,#email{
+            color:red
+        }
+    </style>
+</head>
+
+<body>
+    <form action="">
+
+        <label for="">username</label>
+        <input type="text" name="" id="uname">  <span id="error"></span><br><br>
+    
+        <label for="">email</label>
+        <input type="email" name="" id="email"> <span id="emailid"></span><br><br>
+       
+        <label for="">password</label>
+        <input type="password" name="" id="pass">  <span id="password"></span><br><br>
+      
+        <input type="button" value="submit" onclick=" return savedata()">
+        <button><a href="login.html">login</a></button>
+
+    </form>
+
+    <script>
+
+
+
+        function savedata() {
+
+
+            fname = document.getElementById("uname").value
+            email = document.getElementById("email").value
+            password = document.getElementById("pass").value
+            // console.log(fname,email,pass)
+    //         let ch=/^[a-zA-Z]+$/
+
+    //         if(fname=="")
+    //     {
+    //            document.getElementById("error").innerHTML="enter the user name"
+    //            return false
+    //     }
+    //     else if(fname.length<3)
+    //     {
+    //         document.getElementById("error").innerHTML="enter the min 3 char"
+    //            return false
+    //     }
+    //     else if(fname.length>13)
+    //     {
+    //         document.getElementById("error").innerHTML="enter the max 13 char"
+    //            return false
+    //     }
+    //     else if(fname.match(ch))
+    //     {
+           
+    //         return true 
+    //     }
+    //     else{
+    //          document.getElementById("error").innerHTML="enter the only char"
+    //          return false
+    //     }
+
+    //   if(password=="")
+    //     {
+    //         document.getElementById("password").innerHTML="enter the user password" 
+    //         return false
+    //     }
+
+  
+
+
+    //    if(email=="")
+    //     {
+    //         document.getElementById("emailid").innerHTML="enter the user email" 
+    //         return false
+    //     }
+            // alert("hi")
+            // let fname,email,password
+
+         
+
+            localStorage.setItem("name", fname)
+            localStorage.setItem("email", email)
+            localStorage.setItem("password", password)
+
+
+
+
+            let user_record = new Array()
+            user_record = JSON.parse(localStorage.getItem("users")) ? JSON.parse(localStorage.getItem("users")) : []
+
+            if (user_record.some((val) => {
+                return val.email==email
+            }))
+           {
+                alert("duplicate data")
+            }
+
+            else{
+                user_record.push({"name":fname,
+                "email":email,
+                "pass":password
+                })
+                localStorage.setItem("users",JSON.stringify(user_record))
+            }
+
+
+
+    }
+    </script>
+</body>
+
+</html>
